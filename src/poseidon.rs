@@ -5,6 +5,7 @@ use halo2curves::FieldExt;
 /// output when desired
 #[derive(Debug, Clone)]
 pub struct Poseidon<F: FieldExt, const T: usize, const RATE: usize> {
+    init_state: State<F, T>,
     state: State<F, T>,
     spec: Spec<F, T, RATE>,
     absorbing: Vec<F>,
@@ -14,10 +15,17 @@ impl<F: FieldExt, const T: usize, const RATE: usize> Poseidon<F, T, RATE> {
     /// Constructs a clear state poseidon instance
     pub fn new(r_f: usize, r_p: usize) -> Self {
         Self {
-            spec: Spec::new(r_f, r_p),
             state: State::default(),
+            init_state: State::default(),
+            spec: Spec::new(r_f, r_p),
             absorbing: Vec::new(),
         }
+    }
+
+    /// Resets the state
+    pub fn clear(&mut self) {
+        self.state = self.init_state.clone();
+        self.absorbing.clear();
     }
 
     /// Appends elements to the absorption line updates state while `RATE` is
