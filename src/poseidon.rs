@@ -1,5 +1,5 @@
 use crate::{Spec, State};
-use halo2curves::FieldExt;
+use curves::FieldExt;
 
 /// Poseidon hasher that maintains state and inputs and yields single element
 /// output when desired

@@ -1,5 +1,5 @@
 use crate::spec::{Spec, State};
-use halo2curves::FieldExt;
+use curves::FieldExt;
 
 impl<F: FieldExt, const T: usize, const RATE: usize> Spec<F, T, RATE> {
     /// Applies the Poseidon permutation to the given state

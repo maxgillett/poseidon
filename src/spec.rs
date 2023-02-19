@@ -1,7 +1,7 @@
 use std::ops::Index;
 
 use crate::{grain::Grain, matrix::Matrix};
-use halo2curves::FieldExt;
+use curves::FieldExt;
 
 /// `State` is structure `T` sized field elements that are subjected to
 /// permutation
